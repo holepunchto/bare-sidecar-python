@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bare-sidecar"
-version = "0.0.0"
+version = "0.1.0"
 description = "Start and manage Bare sidecar processes from Python"
 readme = "README.md"
 license = "Apache-2.0"
