@@ -18,6 +18,11 @@ dev = [
   "ruff>=0.6",
 ]
 
+[project.urls]
+Homepage = "https://github.com/holepunchto/bare-sidecar-python"
+Repository = "https://github.com/holepunchto/bare-sidecar-python"
+Issues = "https://github.com/holepunchto/bare-sidecar-python/issues"
+
 [tool.hatch.build.targets.sdist]
 exclude = ["src/bare_sidecar/prebuilds", "node_modules", "build"]
 
