@@ -6,8 +6,6 @@ Start and manage Bare sidecar processes from Python. The Python counterpart of [
 pip install bare-sidecar
 ```
 
-Platform wheels are published for macOS 13 and later, Linux with glibc 2.34 and later, and Windows, each on arm64 and x64.
-
 ## Usage
 
 ```python
