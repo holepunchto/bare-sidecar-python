@@ -90,3 +90,12 @@ def test_close_waits_for_the_process_to_exit():
         return sidecar.returncode
 
     assert run(body()) is not None
+
+
+def test_reading_to_the_end_releases_the_connection():
+    async def body():
+        sidecar = await spawn(FIXTURES / "exit.js")
+        await sidecar.wait()
+        return await sidecar.read()
+
+    assert run(body()) == b""
