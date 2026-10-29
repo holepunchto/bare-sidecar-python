@@ -125,7 +125,7 @@ class Sidecar:
         except ConnectionResetError:
             # On Linux, a process that exits with data still unread resets the
             # connection rather than ending it.
-            return b""
+            data = b""
 
         if not data:
             self._end()
@@ -133,18 +133,9 @@ class Sidecar:
         return data
 
     def _end(self):
-        """End this side of the connection, which the process waits for before
-        it exits once it has ended its own."""
-        if self._writer.is_closing():
-            return
-
-        # A process that has already exited has no end left to end, and pipes on
-        # Windows can't be half closed.
-        with suppress(OSError):
-            if self._writer.can_write_eof():
-                self._writer.write_eof()
-            else:
-                self._writer.close()
+        """Close the connection, which the process waits for before it exits
+        once it has ended its side."""
+        self._writer.close()
 
     def __aiter__(self):
         return self._chunks()
