@@ -1,8 +1,6 @@
 {
-  "name": "bare-sidecar-python",
   "private": true,
-  "description": "Native build of the Bare runtime embedded by bare-sidecar-python",
-  "license": "Apache-2.0",
+  "name": "bare-sidecar-python",
   "dependencies": {
     "bare-module": "^7.0.3",
     "bare-path": "^3.0.0",
