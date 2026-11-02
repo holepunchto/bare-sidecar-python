@@ -35,7 +35,6 @@ set_target_properties(
   POSITION_INDEPENDENT_CODE ON
   OUTPUT_NAME bare
   ENABLE_EXPORTS ON
-  WINDOWS_EXPORT_ALL_SYMBOLS ON
 )
 
 target_link_libraries(
