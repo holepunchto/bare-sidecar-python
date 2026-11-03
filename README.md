@@ -38,7 +38,7 @@ Bare.IPC.on('data', (data) => Bare.IPC.write(data))
 ```python
 from bare_sidecar import versions
 
-versions["bare"] # "1.36.2"
+versions["bare"]  # "1.36.2"
 ```
 
 ## License
