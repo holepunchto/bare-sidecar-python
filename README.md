@@ -31,6 +31,18 @@ Where `app.js` is a Bare entry point using `Bare.IPC`:
 Bare.IPC.on('data', (data) => Bare.IPC.write(data))
 ```
 
+## API
+
+#### `versions`
+
+A read-only mapping of the versions of the components shipped with this package, named as in `Bare.versions`. For example, `versions["bare"]` is the version of the bundled Bare.
+
+```python
+from bare_sidecar import versions
+
+print(versions["bare"])
+```
+
 ## License
 
 Apache-2.0

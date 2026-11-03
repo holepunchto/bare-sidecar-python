@@ -119,7 +119,7 @@ class Sidecar:
 
     async def read(self, n=65536):
         """Read up to ``n`` bytes from the process, or ``b""`` once it has
-        closed its end of the connection."""
+        closed its end of the connection and exited."""
         try:
             data = await self._reader.read(n)
         except ConnectionResetError:
@@ -129,6 +129,7 @@ class Sidecar:
 
         if not data:
             self._end()
+            await self.wait()
 
         return data
 
