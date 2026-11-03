@@ -2,7 +2,7 @@ import asyncio
 import sys
 from pathlib import Path
 
-from bare_sidecar import spawn
+from bare_sidecar import spawn, versions
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -99,3 +99,20 @@ def test_reading_to_the_end_releases_the_connection():
         return await sidecar.read()
 
     assert run(body()) == b""
+
+
+def test_reading_to_the_end_waits_for_the_process_to_exit():
+    async def body():
+        sidecar = await spawn(FIXTURES / "ipc-destroy-exit.js")
+        await sidecar.read()
+        return sidecar.exit_code
+
+    assert run(body()) == 3
+
+
+def test_bundles_the_bare_version_in_the_manifest():
+    async def body():
+        async with await spawn(FIXTURES / "version.js") as sidecar:
+            return b"".join([chunk async for chunk in sidecar])
+
+    assert run(body()).decode() == f"v{versions['bare']}"

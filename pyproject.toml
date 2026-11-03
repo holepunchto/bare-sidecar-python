@@ -30,6 +30,9 @@ exclude = ["src/bare_sidecar/prebuilds", "node_modules", "build"]
 packages = ["src/bare_sidecar"]
 exclude = ["src/bare_sidecar/prebuilds"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"versions.json" = "bare_sidecar/versions.json"
+
 [tool.hatch.build.targets.wheel.hooks.custom]
 
 [tool.ruff]

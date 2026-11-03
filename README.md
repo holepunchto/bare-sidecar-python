@@ -31,6 +31,16 @@ Where `app.js` is a Bare entry point using `Bare.IPC`:
 Bare.IPC.on('data', (data) => Bare.IPC.write(data))
 ```
 
+### Versions
+
+`versions` holds the versions of the components bundled with the sidecar, such as the Bare runtime:
+
+```python
+from bare_sidecar import versions
+
+versions["bare"]  # "1.36.2"
+```
+
 ## License
 
 Apache-2.0
