@@ -31,16 +31,14 @@ Where `app.js` is a Bare entry point using `Bare.IPC`:
 Bare.IPC.on('data', (data) => Bare.IPC.write(data))
 ```
 
-## API
+### Versions
 
-#### `versions`
-
-A read-only mapping of the versions of the components shipped with this package, named as in `Bare.versions`. For example, `versions["bare"]` is the version of the bundled Bare.
+`versions` holds the versions of the components bundled with the sidecar, such as the Bare runtime:
 
 ```python
 from bare_sidecar import versions
 
-print(versions["bare"])
+versions["bare"] # "1.36.2"
 ```
 
 ## License
