@@ -1,5 +1,6 @@
 import asyncio
 import sys
+from itertools import count
 from pathlib import Path
 
 from bare_sidecar import spawn, versions
@@ -90,6 +91,38 @@ def test_close_waits_for_the_process_to_exit():
         return sidecar.returncode
 
     assert run(body()) is not None
+
+
+def test_cancelling_spawn_ends_the_process(capfd):
+    async def spawn_cancelled_after(steps):
+        task = asyncio.ensure_future(spawn(FIXTURES / "log.js"))
+
+        for _ in range(steps):
+            await asyncio.sleep(0)
+
+        if not task.done():
+            task.cancel()
+
+        try:
+            return await task
+        except asyncio.CancelledError:
+            return None
+
+    # Cancelling after every number of steps until spawning completes covers
+    # each point at which spawning can be cancelled. Any process that survived
+    # being cancelled logs alongside the one that completed.
+    async def body():
+        for steps in count():
+            sidecar = await spawn_cancelled_after(steps)
+
+            if sidecar is not None:
+                async with sidecar:
+                    await sidecar.wait()
+
+                return steps
+
+    assert run(body()) > 0
+    assert capfd.readouterr().out.splitlines() == ["Hello world"]
 
 
 def test_reading_to_the_end_releases_the_connection():

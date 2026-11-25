@@ -8,9 +8,10 @@
     "bare-url": "^2.3.2"
   },
   "devDependencies": {
-    "cmake-bare": "^1.6.5",
-    "cmake-bare-bundle": "^3.0.0",
-    "cmake-fetch": "^1.4.0",
+    "cmake-bare": "^1.19.1",
+    "cmake-bare-bundle": "^3.2.0",
+    "cmake-fetch": "^1.5.5",
+    "cmake-prelude": "^0.1.12",
     "prettier": "^3.9.10",
     "prettier-config-holepunch": "^2.0.0"
   }
